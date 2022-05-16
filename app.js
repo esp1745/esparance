@@ -1,7 +1,14 @@
 var http = require('http');
 var fs = require('fs');
 var index = fs.readFileSync( 'index.html');
-
+const mysql =require('mysql')
+ const connection = mysql.createConnection({
+    host: 'localhost',
+     user: 'root',
+     password: '',
+     database: 'temperaturedht'
+  })
+  
 
 var SerialPort = require('serialport');
 const parsers = SerialPort.parsers;
@@ -34,6 +41,23 @@ io.on('connection', function(socket) {
 });
 
 parser.on('data', function(data) {
+    try {
+        connection.connect()
+        var sql = "INSERT INTO dht(humidity,temperature) VALUES (5,7)";
+        connection.query(sql, function (err, result) {
+        //   if (err) throw err;
+        console.log(err);
+          console.log("1 record inserted");
+        });
+      
+        
+    } catch (error) {
+        console.log(error)
+
+        
+    }
+    connection.end()
+
     
     console.log('Received data from port: ' + data);
     
