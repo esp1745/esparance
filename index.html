@@ -5,21 +5,25 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js'></script>
         
         <style>
-        
-            #sample {
-                background-color: red;
-                width: 300px;
-                height: 300px;
-            }
-        
+            body {
+                background-image: url("humi.jpeg");
+                height: 500px;
+                background-position: center;
+                background-repeat: no-repeat; 
+                background-size: cover;
+               }
         </style>
         
     </head>
     <body>
         
-        <h1>Communicating from an Arduino to Node.js</h1>
+        <h1>Welcome to computer science department</h1>
 
-        <div id="sample"></div>
+        <div>
+            <h1 id="info" display: flex;>
+
+            </h1>
+        </div>
         
         <script>
             
@@ -28,8 +32,8 @@
         socket.on('data', function(data) {
             
             console.log(data);
-            
-            document.getElementById('sample').style.opacity = data+"%"; 
+            var info = (data)
+            document.getElementById("info").innerHTML = info;
 
         });
         
